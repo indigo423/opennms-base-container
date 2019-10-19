@@ -4,13 +4,14 @@ ARG BASE_IMAGE_VERSION="rolling"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VERSION=${BASE_IMAGE_VERSION}
-ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 USER root
 
 RUN apt-get update && \
     apt-get install -y ca-certificates shellcheck git-core && \
     rm -rf /var/lib/apt/lists/*
+
+ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \

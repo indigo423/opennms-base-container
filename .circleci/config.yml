@@ -4,7 +4,7 @@ defaults: &defaults
 
 aliases:
   - &docker_environment
-    - image: docker:18.06.0-ce-git
+    - image: docker:stable-git
   - &checkout
     path: ~/opennms-container
   - &build_container
@@ -16,7 +16,7 @@ aliases:
   - &common_steps
     - checkout: *checkout
     - setup_remote_docker
-    - run: apk add --no-cache bash
+    - run: apk add --no-cache bash make
     - run: *registry_login
     - run: *build_container
     - store_artifacts:
@@ -120,30 +120,6 @@ jobs:
   tomcat:
     <<: *common_environment
     working_directory: ~/opennms-container/projects/tomcat
-  
-  base-horizon-jdk8:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-horizon-jdk8
-
-  base-horizon-jdk11:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-horizon-jdk11
-
-  base-minion-jdk8:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-minion-jdk8
-
-  base-minion-jdk11:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-minion-jdk11
-
-  base-sentinel-jdk8:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-sentinel-jdk8
-
-  base-sentinel-jdk11:
-    <<: *common_environment
-    working_directory: ~/opennms-container/projects/base-sentinel-jdk11
 
 workflows:
   version: 2
@@ -223,27 +199,3 @@ workflows:
           requires:
             - shellcheck
             - maven-jdk
-      - base-horizon-jdk8:
-          requires:
-            - shellcheck
-            - openjdk-8
-      - base-horizon-jdk11:
-          requires:
-            - shellcheck
-            - openjdk-11
-      - base-minion-jdk8:
-          requires:
-            - shellcheck
-            - openjdk-8
-      - base-minion-jdk11:
-          requires:
-            - shellcheck
-            - openjdk-11
-      - base-sentinel-jdk8:
-          requires:
-            - shellcheck
-            - openjdk-8
-      - base-sentinel-jdk11:
-          requires:
-            - shellcheck
-            - openjdk-11
