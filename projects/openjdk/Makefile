@@ -1,7 +1,7 @@
 include ../_Makefile/generic-settings.mk
 include ../_Makefile/make-help.mk
 
-BASE_IMAGE=centos
+BASE_IMAGE=no42org/centos
 BASE_IMAGE_VERSION=8
 JDK8_MAJOR_VERSION=1.8.0
 JDK8_VERSION_DETAIL=$(JDK8_MAJOR_VERSION).222.b10
