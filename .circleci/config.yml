@@ -16,7 +16,7 @@ aliases:
   - &common_steps
     - checkout: *checkout
     - setup_remote_docker
-    - run: apk add --no-cache bash
+    - run: apk add --no-cache bash make
     - run: *registry_login
     - run: *build_container
     - store_artifacts:
