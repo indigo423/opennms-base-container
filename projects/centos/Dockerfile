@@ -6,9 +6,7 @@ FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VERSION=${BASE_IMAGE_VERSION}
 
-RUN dnf -y install dnf-plugins-core && \
-    dnf config-manager --set-enabled PowerTools && \
-    dnf -y --nodocs update && \
+RUN dnf -y --nodocs update && \
     dnf clean all && \
     rm -rf /var/cache/yum
 
