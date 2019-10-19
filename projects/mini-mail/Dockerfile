@@ -31,6 +31,8 @@ COPY container-fs/etc/cont-init.d /etc/cont-init.d
 COPY container-fs/etc/syslog.conf /etc/syslog.conf
 COPY --chown=root:dovecot container-fs/etc/dovecot/conf.d /etc/dovecot/conf.d
 
+ARG BUILD_DATE="1970-01-01T00:00:00+0000"
+
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
       name="Minimal Mail Container with Postfix and Dovecot" \

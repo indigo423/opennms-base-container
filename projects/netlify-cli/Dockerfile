@@ -4,10 +4,11 @@ ARG BASE_IMAGE_VERSION="latest"
 FROM ${BASE_IMAGE}:${BASE_IMAGE_VERSION}
 
 ARG VERSION="2.8.3"
-ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 RUN apk add --no-cache ca-certificates && \
     npm install netlify-cli -g
+
+ARG BUILD_DATE="1970-01-01T00:00:00+0000"
 
 LABEL maintainer="The OpenNMS Group" \
       license="AGPLv3" \
